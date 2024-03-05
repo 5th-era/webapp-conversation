@@ -27,6 +27,8 @@ const translation = {
     valueOfVarRequired: 'Variables value can not be empty',
     waitForResponse:
       'Please wait for the response to the previous message to complete.',
+    valueOfScenarioRequired: 'Please select the training scenario.',
+
   },
 }
 

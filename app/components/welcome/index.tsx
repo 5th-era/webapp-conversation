@@ -93,7 +93,10 @@ const Welcome: FC<IWelcomeProps> = ({
       <div className='space-y-3'>
         {promptConfig.prompt_variables.map(item => (
           <div className='tablet:flex items-start mobile:space-y-2 tablet:space-y-0 mobile:text-xs tablet:text-sm' key={item.key}>
-            <label className={`flex-shrink-0 flex items-center tablet:leading-9 mobile:text-gray-700 tablet:text-gray-900 mobile:font-medium pc:font-normal ${s.formLabel}`}>{item.name}</label>
+            {
+              (item.name !== '演讲技巧' && item.name !== '点评示例' && item.name !== '优秀示范' && item.name !== '用户名') &&
+              <label className={`flex-shrink-0 flex items-center tablet:leading-9 mobile:text-gray-700 tablet:text-gray-900 mobile:font-medium pc:font-normal ${s.formLabel}`}>{item.name}</label>
+            }
             {item.type === 'select'
               && (
                 <Select
@@ -114,7 +117,7 @@ const Welcome: FC<IWelcomeProps> = ({
                 maxLength={item.max_length || DEFAULT_VALUE_MAX_LEN}
               />
             )}
-            {item.type === 'paragraph' && (
+            {item.type === 'paragraph' && (item.name !== '演讲技巧' && item.name !== '点评示例' && item.name !== '优秀示范' && item.name !== '用户名') && (
               <textarea
                 className="w-full h-[104px] flex-grow py-2 pl-3 pr-3 box-border rounded-lg bg-gray-50"
                 placeholder={`${item.name}${!item.required ? `(${t('appDebug.variableTable.optional')})` : ''}`}
@@ -131,9 +134,9 @@ const Welcome: FC<IWelcomeProps> = ({
   const canChat = () => {
     const inputLens = Object.values(inputs).length
     const promptVariablesLens = promptConfig.prompt_variables.length
-    const emytyInput = inputLens < promptVariablesLens || Object.values(inputs).filter(v => v === '').length > 0
+    const emytyInput = inputLens < promptVariablesLens || Object.values(inputs).filter(v => v === '').length >= promptVariablesLens
     if (emytyInput) {
-      logError(t('app.errorMessage.valueOfVarRequired'))
+      logError(t('app.errorMessage.valueOfScenarioRequired'))
       return false
     }
     return true
@@ -262,7 +265,7 @@ const Welcome: FC<IWelcomeProps> = ({
   const renderHasSetInputsPrivate = () => {
     if (!canEidtInpus || !hasVar)
       return null
-
+    return null
     return (
       <TemplateVarPanel
         isFold={isFold}
@@ -331,10 +334,7 @@ const Welcome: FC<IWelcomeProps> = ({
               </div>
               : <div>
               </div>}
-            <a className='flex items-center pr-3 space-x-3' href="https://dify.ai/" target="_blank">
-              <span className='uppercase'>{t('app.chat.powerBy')}</span>
-              <FootLogo />
-            </a>
+
           </div>
         )}
       </div>

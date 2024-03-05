@@ -23,6 +23,41 @@ import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/confi
 import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 
+// 引入JSON数据
+import scenarios from './scenarios.json';
+
+// 定义类型
+interface ScenarioInfo {
+  speakingSkills: string;
+  speakingDemo: string;
+  reviewExample: string;
+}
+
+interface Scenario {
+  name: string;
+  info: ScenarioInfo;
+}
+
+// 基于场景名称获取对应信息的函数
+function getScenarioInfoByName(scenarioName: string): ScenarioInfo | undefined {
+  const scenario = scenarios.find((s: Scenario) => s.name === scenarioName);
+  return scenario ? scenario.info : undefined;
+}
+
+async function fetchScenarioText(url: string): Promise<string> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const text = await response.text();
+    return text;
+  } catch (error) {
+    console.error("Could not fetch the text:", error);
+    return '';
+  }
+}
+
 const Main: FC = () => {
   const { t } = useTranslation()
   const media = useBreakpoints()
@@ -47,7 +82,7 @@ const Main: FC = () => {
 
   useEffect(() => {
     if (APP_INFO?.title)
-      document.title = `${APP_INFO.title} - Powered by Dify`
+      document.title = `${APP_INFO.title} - Powered by D5J`
   }, [APP_INFO?.title])
 
   // onData change thought (the produce obj). https://github.com/immerjs/immer/issues/576
@@ -80,7 +115,16 @@ const Main: FC = () => {
 
   const [conversationIdChangeBecauseOfNew, setConversationIdChangeBecauseOfNew, getConversationIdChangeBecauseOfNew] = useGetState(false)
   const [isChatStarted, { setTrue: setChatStarted, setFalse: setChatNotStarted }] = useBoolean(false)
-  const handleStartChat = (inputs: Record<string, any>) => {
+  const handleStartChat = async (inputs: Record<string, any>) => {
+    const sceneinfo = getScenarioInfoByName(inputs.scene)
+    if (!inputs.context)
+      inputs.speakingSkills = await fetchScenarioText(sceneinfo?.speakingSkills)
+    if (!inputs.example)
+      inputs.reviewExample = await fetchScenarioText(sceneinfo?.reviewExample)
+    if (!inputs.excellentDemo)
+      inputs.speakingDemo = await fetchScenarioText(sceneinfo?.speakingDemo)
+    if (!inputs.user)
+      inputs.user = "yz181x"
     createNewChat()
     setConversationIdChangeBecauseOfNew(true)
     setCurrInputs(inputs)

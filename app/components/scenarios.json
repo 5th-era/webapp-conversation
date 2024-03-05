@@ -1,0 +1,26 @@
+[
+    {
+        "name": "自我介绍",
+        "info": {
+            "speakingSkills": "/scenes/selfIntroduction_Skills",
+            "speakingDemo": "/scenes/selfIntroduction_Demo",
+            "reviewExample": "/scenes/selfIntroduction_Example"
+        }
+    },
+    {
+        "name": "逻辑表达",
+        "info": {
+            "speakingSkills": "/scenes/expressingLogic_Skills",
+            "speakingDemo": "/scenes/expressingLogic_Demo",
+            "reviewExample": "/scenes/expressingLogic_Example"
+        }
+    },
+    {
+        "name": "工作汇报",
+        "info": {
+            "speakingSkills": "/scenes/workReport_Skills",
+            "speakingDemo": "/scenes/workReport_Demo",
+            "reviewExample": "/scenes/workReport_Example"
+        }
+    }
+]

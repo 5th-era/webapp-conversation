@@ -22,6 +22,7 @@ const translation = {
   errorMessage: {
     valueOfVarRequired: '变量值必填',
     waitForResponse: '请等待上条信息响应完成',
+    valueOfScenarioRequired: '请选择训练场景',
   },
 }
 
