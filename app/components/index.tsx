@@ -118,11 +118,11 @@ const Main: FC = () => {
   const handleStartChat = async (inputs: Record<string, any>) => {
     const sceneinfo = getScenarioInfoByName(inputs.scene)
     if (!inputs.context)
-      inputs.speakingSkills = await fetchScenarioText(sceneinfo?.speakingSkills)
+      inputs.speakingSkills = await fetchScenarioText(sceneinfo?.speakingSkills || '')
     if (!inputs.example)
-      inputs.reviewExample = await fetchScenarioText(sceneinfo?.reviewExample)
+      inputs.reviewExample = await fetchScenarioText(sceneinfo?.reviewExample || '')
     if (!inputs.excellentDemo)
-      inputs.speakingDemo = await fetchScenarioText(sceneinfo?.speakingDemo)
+      inputs.speakingDemo = await fetchScenarioText(sceneinfo?.speakingDemo || '')
     if (!inputs.user)
       inputs.user = "yz181x"
     createNewChat()

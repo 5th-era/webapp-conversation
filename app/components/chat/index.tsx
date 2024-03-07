@@ -1,12 +1,13 @@
 'use client'
 import type { FC } from 'react'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import { useTranslation } from 'react-i18next'
 import Textarea from 'rc-textarea'
 import s from './style.module.css'
 import Answer from './answer'
 import Question from './question'
+import Recorder from 'js-audio-recorder'
 import type { FeedbackFunc, Feedbacktype } from './type'
 import type { VisionFile, VisionSettings } from '@/types/app'
 import { TransferMethod } from '@/types/app'
@@ -15,6 +16,10 @@ import Toast from '@/app/components/base/toast'
 import ChatImageUploader from '@/app/components/base/image-uploader/chat-image-uploader'
 import ImageList from '@/app/components/base/image-uploader/image-list'
 import { useImageFiles } from '@/app/components/base/image-uploader/hooks'
+import { XCircle } from '@/app/components/base/icons/solid/general'
+import { Microphone01 } from '../base/icons/line/mediaAndDevices'
+import { Microphone01 as Microphone01Solid } from '../base/icons/line/mediaAndDevices'
+import VoiceInput from '@/app/components/base/voice-input'
 
 export type IChatProps = {
   chatList: IChatItem[]
@@ -76,6 +81,15 @@ const Chat: FC<IChatProps> = ({
   const handleContentChange = (e: any) => {
     const value = e.target.value
     setQuery(value)
+  }
+
+  const [voiceInputShow, setVoiceInputShow] = useState(false)
+  const handleVoiceInputShow = () => {
+    (Recorder as any).getPermission().then(() => {
+      setVoiceInputShow(true)
+    }, () => {
+      logError(t('common.voiceInput.notAllow'))
+    })
   }
 
   const logError = (message: string) => {
@@ -203,19 +217,46 @@ const Chat: FC<IChatProps> = ({
                 autoSize
               />
               <div className="absolute bottom-2 right-2 flex items-center h-8">
-                <div className={`${s.count} mr-4 h-5 leading-5 text-sm bg-gray-50 text-gray-500`}>{query.trim().length}</div>
+                <div className={`${s.count} h-5 leading-5 text-sm bg-gray-50 text-gray-500`}>{query.trim().length}</div>
+                {
+                  query
+                    ? (
+                      <div className='flex justify-center items-center ml-2 w-8 h-8 cursor-pointer hover:bg-gray-100 rounded-lg' onClick={() => setQuery('')}>
+                        <XCircle className='w-4 h-4 text-[#98A2B3]' />
+                      </div>
+                    )
+                    : true
+                      ? (
+                        <div
+                          className='group flex justify-center items-center ml-2 w-8 h-8 hover:bg-primary-50 rounded-lg cursor-pointer'
+                          onClick={handleVoiceInputShow}
+                        >
+                          <Microphone01 className='block w-4 h-4 text-gray-500 group-hover:hidden' />
+                          <Microphone01Solid className='hidden w-4 h-4 text-primary-600 group-hover:block' />
+                        </div>
+                      )
+                      : null
+                }
                 <Tooltip
                   selector='send-tip'
-                  htmlContent={
-                    <div>
-                      <div>{t('common.operation.send')} Enter</div>
-                      <div>{t('common.operation.lineBreak')} Shift Enter</div>
-                    </div>
-                  }
+                // htmlContent={
+                //   <div>
+                //     <div>{t('common.operation.send')} Enter</div>
+                //     <div>{t('common.operation.lineBreak')} Shift Enter</div>
+                //   </div>
+                // }
                 >
                   <div className={`${s.sendBtn} w-8 h-8 cursor-pointer rounded-md`} onClick={handleSend}></div>
                 </Tooltip>
               </div>
+              {
+                voiceInputShow && (
+                  <VoiceInput
+                    onCancel={() => setVoiceInputShow(false)}
+                    onConverted={text => setQuery(text)}
+                  />
+                )
+              }
             </div>
           </div>
         )

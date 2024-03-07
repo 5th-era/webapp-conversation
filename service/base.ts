@@ -258,6 +258,38 @@ export const upload = (fetchOptions: any): Promise<any> => {
   })
 }
 
+export const audio2text = (fetchOptions: any): Promise<any> => {
+  const urlPrefix = API_PREFIX
+  const urlWithPrefix = `${urlPrefix}/audio-to-text`
+  const defaultOptions = {
+    method: 'POST',
+    url: `${urlWithPrefix}`,
+    data: {},
+  }
+  const options = {
+    ...defaultOptions,
+    ...fetchOptions,
+  }
+  return new Promise((resolve, reject) => {
+    const xhr = options.xhr
+    xhr.open(options.method, options.url)
+    for (const key in options.headers)
+      xhr.setRequestHeader(key, options.headers[key])
+
+    xhr.withCredentials = true
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200)
+          resolve({ id: xhr.response })
+        else
+          reject(xhr)
+      }
+    }
+    xhr.upload.onprogress = options.onprogress
+    xhr.send(options.data)
+  })
+}
+
 export const ssePost = (url: string, fetchOptions: any, { onData, onCompleted, onThought, onFile, onMessageEnd, onMessageReplace, onError }: IOtherOptions) => {
   const options = Object.assign({}, baseOptions, {
     method: 'POST',

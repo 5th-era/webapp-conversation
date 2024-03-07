@@ -28,6 +28,11 @@ const translation = {
     pasteImageLinkInvalid: 'Invalid image link',
     imageUpload: 'Image Upload',
   },
+  voiceInput: {
+    speaking: 'Speak now...',
+    converting: 'Converting to text...',
+    notAllow: 'microphone not authorized',
+  },
 }
 
 export default translation

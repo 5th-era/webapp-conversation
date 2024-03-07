@@ -28,6 +28,11 @@ const translation = {
     pasteImageLinkInvalid: '图片链接无效',
     imageUpload: '图片上传',
   },
+  voiceInput: {
+    speaking: '现在讲...',
+    converting: '正在转换为文本...',
+    notAllow: '麦克风未授权',
+  },
 }
 
 export default translation
