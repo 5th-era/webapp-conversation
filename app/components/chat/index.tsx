@@ -83,6 +83,11 @@ const Chat: FC<IChatProps> = ({
     setQuery(value)
   }
 
+  const handleQueryChange = (e: string) => {
+    const value = e
+    setQuery(value)
+  }
+
   const [voiceInputShow, setVoiceInputShow] = useState(false)
   const handleVoiceInputShow = () => {
     (Recorder as any).getPermission().then(() => {
@@ -162,6 +167,7 @@ const Chat: FC<IChatProps> = ({
             return <Answer
               key={item.id}
               item={item}
+              onQueryChange={handleQueryChange}
               feedbackDisabled={feedbackDisabled}
               onFeedback={onFeedback}
               isResponsing={isResponsing && isLast}

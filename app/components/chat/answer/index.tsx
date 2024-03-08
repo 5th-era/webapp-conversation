@@ -56,6 +56,7 @@ const IconWrapper: FC<{ children: React.ReactNode | string }> = ({ children }) =
 type IAnswerProps = {
   item: IChatItem
   feedbackDisabled: boolean
+  onQueryChange: (query: string) => void
   onFeedback?: FeedbackFunc
   isResponsing?: boolean
   allToolIcons?: Record<string, string | Emoji>
@@ -65,6 +66,7 @@ type IAnswerProps = {
 const Answer: FC<IAnswerProps> = ({
   item,
   feedbackDisabled = false,
+  onQueryChange,
   onFeedback,
   isResponsing,
   allToolIcons,
@@ -188,6 +190,19 @@ const Answer: FC<IAnswerProps> = ({
                   : (
                     <Markdown content={content} />
                   ))}
+              {item.isOpeningStatement && item.suggestedQuestions && item.suggestedQuestions.filter(q => !!q && q.trim()).length > 0 && (
+                <div className='flex flex-wrap'>
+                  {item.suggestedQuestions.filter(q => !!q && q.trim()).map((question, index) => (
+                    <div
+                      key={index}
+                      className='mt-1 mr-1 max-w-full last:mr-0 shrink-0 py-[5px] leading-[18px] items-center px-4 rounded-lg border border-gray-200 shadow-xs bg-white text-xs font-medium text-primary-600 cursor-pointer'
+                      onClick={() => onQueryChange(question)}
+                    >
+                      {question}
+                    </div>),
+                  )}
+                </div>
+              )}
             </div>
             <div className='absolute top-[-14px] right-[-14px] flex flex-row justify-end gap-1'>
               {!feedbackDisabled && !item.feedbackDisabled && renderItemOperation()}
