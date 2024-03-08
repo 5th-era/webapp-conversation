@@ -3,7 +3,7 @@ networks:
   yanjiang:
 services:
   yanjiang:
-    image: yz181x/yanjiang:240305 
+    image: yz181x/yanjiang:240308-http-platform
     container_name: yanjiang
     networks:
       - yanjiang
