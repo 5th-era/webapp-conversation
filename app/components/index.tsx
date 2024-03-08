@@ -71,6 +71,7 @@ const Main: FC = () => {
   const [isUnknwonReason, setIsUnknwonReason] = useState<boolean>(false)
   const [promptConfig, setPromptConfig] = useState<PromptConfig | null>(null)
   const [inited, setInited] = useState<boolean>(false)
+  const [suggestedQuestions, setSuggestedQuestions] = useState([]);
   // in mobile, show sidebar by click button
   const [isShowSidebar, { setTrue: showSidebar, setFalse: hideSidebar }] = useBoolean(false)
   const [visionConfig, setVisionConfig] = useState<VisionSettings | undefined>({
@@ -124,7 +125,7 @@ const Main: FC = () => {
     if (!inputs.excellentDemo)
       inputs.speakingDemo = await fetchScenarioText(sceneinfo?.speakingDemo || '')
     if (!inputs.user)
-      inputs.user = "yz181x"
+      inputs.user = "学员"
     createNewChat()
     setConversationIdChangeBecauseOfNew(true)
     setCurrInputs(inputs)
@@ -198,6 +199,7 @@ const Main: FC = () => {
 
   const handleConversationIdChange = (id: string) => {
     if (id === '-1') {
+      setChatNotStarted()
       createNewChat()
       setConversationIdChangeBecauseOfNew(true)
     }
@@ -248,7 +250,8 @@ const Main: FC = () => {
       content: caculatedIntroduction,
       isAnswer: true,
       feedbackDisabled: true,
-      isOpeningStatement: isShowPrompt,
+      isOpeningStatement: true,
+      suggestedQuestions: suggestedQuestions
     }
     if (caculatedIntroduction)
       return [openstatement]
@@ -270,7 +273,7 @@ const Main: FC = () => {
         const { data: conversations } = conversationData as { data: ConversationItem[] }
         const _conversationId = getConversationIdFromStorage(APP_ID)
         const isNotNewConversation = conversations.some(item => item.id === _conversationId)
-
+        setSuggestedQuestions(appParams.suggested_questions)
         // fetch new conversation info
         const { user_input_form, opening_statement: introduction, file_upload, system_parameters }: any = appParams
         setLocaleOnClient(APP_INFO.default_language, true)

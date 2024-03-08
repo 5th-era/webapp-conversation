@@ -30,7 +30,7 @@ const Header: FC<IHeaderProps> = ({
         )
         : <div></div>}
       <div className='flex items-center space-x-2'>
-        <div className=" text-sm text-gray-800 font-bold">{title}</div>
+        <div className=" text-xl text-gray-800 font-bold">{title}</div>
       </div>
       {isMobile
         ? (
