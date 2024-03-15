@@ -2,7 +2,7 @@ version: '2.0'
 networks:
   yanjiang:
 services:
-  yanjiang:
+  yanjiang-test:
     image: yz181x/yanjiang:240315-d5j
     networks:
       - yanjiang
