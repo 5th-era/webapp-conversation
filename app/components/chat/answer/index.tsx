@@ -196,7 +196,7 @@ const Answer: FC<IAnswerProps> = ({
                     <div
                       key={index}
                       className='mt-1 mr-1 max-w-full last:mr-0 shrink-0 py-[5px] leading-[18px] items-center px-4 rounded-lg border border-gray-200 shadow-xs bg-white text-xs font-medium text-primary-600 cursor-pointer'
-                      onClick={() => onQueryChange(question)}
+                      onClick={() => onQueryChange(question.replace("【点击观看】", ""))}
                     >
                       {question}
                     </div>),
