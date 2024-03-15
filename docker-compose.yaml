@@ -3,9 +3,11 @@ networks:
   yanjiang:
 services:
   yanjiang:
-    image: yz181x/yanjiang:240308-dify-3
-    container_name: yanjiang
+    image: yz181x/yanjiang:240315-d5j
     networks:
       - yanjiang
+    restart: always
+    volumes:
+      - ./public/scenes:/app/public/scenes
     ports:
-      - "1800:3000"
+      - "3000:3000"
