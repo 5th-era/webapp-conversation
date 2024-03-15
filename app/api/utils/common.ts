@@ -5,9 +5,14 @@ import { API_KEY, API_URL, APP_ID } from '@/config'
 
 const userPrefix = `user_${APP_ID}:`
 
-export const getInfo = (request: NextRequest) => {
+export const getInfo = (request: NextRequest, login_name: string = '') => {
   const sessionId = request.cookies.get('session_id')?.value || v4()
-  const user = userPrefix + sessionId
+  var user = userPrefix + sessionId
+  if (login_name) {
+    // user = user + ":" + login_name
+    user = login_name
+  }
+
   return {
     sessionId,
     user,

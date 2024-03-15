@@ -48,7 +48,7 @@ export class DifyClient {
   constructor(apiKey, baseUrl = BASE_URL) {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
-    console.log("APP_URL:", baseUrl)
+    // console.log("APP_URL:", baseUrl)
   }
 
   updateApiKey(apiKey) {

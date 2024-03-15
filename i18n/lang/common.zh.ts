@@ -33,6 +33,12 @@ const translation = {
     converting: '正在转换为文本...',
     notAllow: '麦克风未授权',
   },
+  auth: {
+    verifyType: '手机验证码',
+    phoneNumber: '请输入手机号',
+    verifyCode: '请输入验证码',
+    sendCode: '发送验证码',
+  },
 }
 
 export default translation

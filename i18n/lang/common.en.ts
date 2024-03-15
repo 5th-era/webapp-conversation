@@ -33,6 +33,12 @@ const translation = {
     converting: 'Converting to text...',
     notAllow: 'microphone not authorized',
   },
+  auth: {
+    verifyType: 'verifyType',
+    phoneNumber: 'phoneNumber',
+    verifyCode: 'verifyCode',
+    sendCode: '发送验证码',
+  },
 }
 
 export default translation

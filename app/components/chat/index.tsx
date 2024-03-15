@@ -20,6 +20,8 @@ import { XCircle } from '@/app/components/base/icons/solid/general'
 import { Microphone01 } from '../base/icons/line/mediaAndDevices'
 import { Microphone01 as Microphone01Solid } from '../base/icons/line/mediaAndDevices'
 import VoiceInput from '@/app/components/base/voice-input'
+import { useSession } from "next-auth/react"
+import { LoginForm } from "@/app/login/form"
 
 export type IChatProps = {
   chatList: IChatItem[]
@@ -156,6 +158,12 @@ const Chat: FC<IChatProps> = ({
       e.preventDefault()
     }
   }
+
+  const { data: session, status } = useSession();
+  if (status != "authenticated") {
+    return <LoginForm />;
+  }
+  // console.info("user:", session.user?.name);
 
   return (
     <div className={cn(!feedbackDisabled && 'px-3.5', 'h-full')}>
