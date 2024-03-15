@@ -22,5 +22,21 @@
             "speakingDemo": "/scenes/workReport_Demo",
             "reviewExample": "/scenes/workReport_Example"
         }
+    },
+    {
+        "name": "面试竞选",
+        "info": {
+            "speakingSkills": "/scenes/interview_Skills",
+            "speakingDemo": "/scenes/interview_Demo",
+            "reviewExample": "/scenes/interview_Example"
+        }
+    },
+    {
+        "name": "酒桌发言",
+        "info": {
+            "speakingSkills": "/scenes/toast_Skills",
+            "speakingDemo": "/scenes/toast_Demo",
+            "reviewExample": "/scenes/toast_Example"
+        }
     }
 ]
