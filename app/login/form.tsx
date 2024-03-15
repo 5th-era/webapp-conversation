@@ -107,7 +107,7 @@ export const LoginForm = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <p className="text-center bg-blue-400 text-white py-4 mb-6 rounded">请先登录</p>
+            <p className="text-center bg-green-600 text-white py-4 mb-6 rounded">请先登录</p>
             {error && (
                 <p className="text-center bg-red-400 py-4 mb-6 rounded">{error}</p>
             )}
