@@ -154,7 +154,7 @@ const VoiceInput = ({
       <div className='absolute inset-[1.5px] flex items-center pl-[14.5px] pr-[6.5px] py-[14px] bg-primary-25 rounded-[10.5px] overflow-hidden'>
         <canvas id='voice-input-record' className='absolute left-0 bottom-0 w-full h-4' />
         {
-          startConvert && <Loading02 className='animate-spin mr-2 w-4 h-4 text-primary-700' />
+          startConvert && <Loading02 className='animate-spin mr-2 w-10 h-10 text-primary-700' />
         }
         <div className='grow'>
           {
@@ -175,20 +175,20 @@ const VoiceInput = ({
         {
           startRecord && (
             <div
-              className='flex justify-center items-center mr-1 w-8 h-8 hover:bg-primary-100 rounded-lg  cursor-pointer'
+              className='flex justify-center items-center mr-1 w-10 h-10 hover:bg-primary-100 rounded-lg  cursor-pointer'
               onClick={handleStopRecorder}
             >
-              <StopCircle className='w-5 h-5 text-primary-600' />
+              <StopCircle className='w-10 h-10 text-primary-600' />
             </div>
           )
         }
         {
           startConvert && (
             <div
-              className='flex justify-center items-center mr-1 w-8 h-8 hover:bg-gray-200 rounded-lg  cursor-pointer'
+              className='flex justify-center items-center mr-1 w-4 h-4 hover:bg-gray-200 rounded-lg  cursor-pointer'
               onClick={onCancel}
             >
-              <XClose className='w-4 h-4 text-gray-500' />
+              <XClose className='w-10 h-10 text-gray-500' />
             </div>
           )
         }

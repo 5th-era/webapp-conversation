@@ -252,11 +252,11 @@ const Chat: FC<IChatProps> = ({
                     : true
                       ? (
                         <div
-                          className='group flex justify-center items-center ml-2 w-8 h-8 hover:bg-primary-50 rounded-lg cursor-pointer'
+                          className='group flex justify-center items-center ml-2 w-10 h-10 hover:bg-primary-50 rounded-lg cursor-pointer'
                           onClick={handleVoiceInputShow}
                         >
-                          <Microphone01 className='block w-4 h-4 text-gray-500 group-hover:hidden' />
-                          <Microphone01Solid className='hidden w-4 h-4 text-primary-600 group-hover:block' />
+                          <Microphone01 className='block w-10 h-10 text-gray-500 group-hover:hidden' />
+                          <Microphone01Solid className='hidden w-10 h-10 text-primary-600 group-hover:block' />
                         </div>
                       )
                       : null
@@ -270,7 +270,7 @@ const Chat: FC<IChatProps> = ({
                 //   </div>
                 // }
                 >
-                  <div className={`${s.sendBtn} w-8 h-8 cursor-pointer rounded-md`} onClick={handleSend}></div>
+                  <div className={`${s.sendBtn} w-10 h-10 cursor-pointer rounded-md`} onClick={handleSend}></div>
                 </Tooltip>
               </div>
               {
