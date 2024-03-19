@@ -9,6 +9,7 @@ import { ChatBubbleOvalLeftEllipsisIcon as ChatBubbleOvalLeftEllipsisSolidIcon }
 import Button from '@/app/components/base/button'
 // import Card from './card'
 import type { ConversationItem } from '@/types/app'
+import { LogoutButton } from '../auth/buttons'
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
@@ -80,6 +81,7 @@ const Sidebar: FC<ISidebarProps> = ({
       <div className="flex flex-shrink-0 pr-4 pb-4 pl-4">
         <div className="text-gray-400 font-normal text-xs">© {copyRight} {(new Date()).getFullYear()}</div>
       </div>
+      {<LogoutButton />}
     </div>
   )
 }

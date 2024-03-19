@@ -422,6 +422,9 @@ const Main: FC = () => {
     let tempNewConversationId = ''
 
     setResponsingTrue()
+    const now_local = new Date()
+    // const now_utc = new Date(now_local.getTime() + now_local.getTimezoneOffset() * 60000)
+    data["time"] = now_local
     sendChatMessage(data, {
       getAbortController: (abortController) => {
         setAbortController(abortController)

@@ -38,6 +38,7 @@ const translation = {
     phoneNumber: 'phoneNumber',
     verifyCode: 'verifyCode',
     sendCode: '发送验证码',
+    SN: 'SN'
   },
 }
 

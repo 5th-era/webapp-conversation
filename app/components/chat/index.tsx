@@ -22,6 +22,7 @@ import { Microphone01 as Microphone01Solid } from '../base/icons/line/mediaAndDe
 import VoiceInput from '@/app/components/base/voice-input'
 import { useSession } from "next-auth/react"
 import { LoginForm } from "@/app/login/form"
+import { BindForm, get_user, check_user_valid, check_user_trying, BindButton } from '@/app/bind-sn/form'
 
 export type IChatProps = {
   chatList: IChatItem[]
@@ -163,11 +164,20 @@ const Chat: FC<IChatProps> = ({
   if (status != "authenticated") {
     return <LoginForm />;
   }
-  // console.info("user:", session.user?.name);
+
+  const user_info = session.user?.customData;
+  // console.info("user_info:", user_info);
+  const user_valid = check_user_valid(user_info);
+  // console.log("user_valid: ", user_valid)
+  const user_trying = check_user_trying(user_info);
+  if (!user_valid) {
+    return <BindForm />;
+  }
 
   return (
     <div className={cn(!feedbackDisabled && 'px-3.5', 'h-full')}>
       {/* Chat List */}
+      {user_trying && <BindButton />}
       <div className="h-full space-y-[30px]">
         {chatList.map((item) => {
           if (item.isAnswer) {

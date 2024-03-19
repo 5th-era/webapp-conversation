@@ -13,10 +13,19 @@ export const LoginButton = () => {
 };
 
 export const LogoutButton = () => {
+    const { data: session, status } = useSession();
+    const user = session?.user.name;
+
     return (
-        <button style={{ marginRight: 10 }} onClick={() => signOut()}>
-            Sign Out
-        </button>
+        <div>
+            {status == "authenticated" && (
+                <button
+                    onClick={() => { signOut(); }}
+                    style={{ marginLeft: 16 }}
+                >
+                    退出登录
+                </button>)}
+        </div>
     );
 };
 
