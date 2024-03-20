@@ -277,7 +277,7 @@ const Chat: FC<IChatProps> = ({
                 voiceInputShow && (
                   <VoiceInput
                     onCancel={() => setVoiceInputShow(false)}
-                    onConverted={text => setQuery(text)}
+                    onConverted={text => setQuery("这是语音格式提交后转换为文字的结果：\t" + text)}
                   />
                 )
               }
