@@ -3,7 +3,7 @@ networks:
   yanjiang:
 services:
   yanjiang-test:
-    image: yz181x/yanjiang:240320-d5j
+    image: yz181x/yanjiang:240320-d5j-1
     networks:
       - yanjiang
     restart: always
