@@ -58,6 +58,15 @@ export async function get_user(phoneNumber: string) {
 }
 
 export function check_user_valid(user_info) {
+    if ((user_info === undefined)
+        || (user_info['valid_type'] === undefined)
+        || (user_info['sn'] === undefined)
+        || (user_info['expeired_at'] === undefined)
+        || (user_info['valid_times'] === undefined)
+    ) {
+        return false;
+    }
+
     if (user_info['valid_type'] === 'valid_period') {
         const expeired_at = new Date(user_info['expeired_at']);
         const now_local = new Date();
@@ -74,6 +83,9 @@ export function check_user_valid(user_info) {
 }
 
 export function check_user_trying(user_info) {
+    if ((user_info === undefined) || (user_info['sn'] === undefined)) {
+        return true;
+    }
     return (user_info['sn'] === 'trialed_key') ? true : false;
 }
 
