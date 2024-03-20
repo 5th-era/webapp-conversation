@@ -112,7 +112,7 @@ export const BindForm = () => {
                 router.push(callbackUrl);
                 signOut({
                     redirect: true,
-                    callbackUrl: callbackUrl
+                    callbackUrl: "/login"
                 });
             } else {
                 alert("绑定失败，请重试。")

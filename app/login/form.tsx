@@ -107,7 +107,7 @@ export const LoginForm = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <p className="text-center bg-green-600 text-white py-4 mb-6 rounded">请先登录</p>
+            <p className="text-center bg-green-600 text-white py-4 mb-6 rounded">请登录</p>
             {error && (
                 <p className="text-center bg-red-400 py-4 mb-6 rounded">{error}</p>
             )}
@@ -118,7 +118,7 @@ export const LoginForm = () => {
                     name="phoneNumber"
                     value={formValues.phoneNumber}
                     onChange={handleChange}
-                    placeholder={t('common.auth.phoneNumber') as string}
+                    placeholder='请输入手机号'
                     className={`${input_style}`}
                 />
             </div>
@@ -129,7 +129,7 @@ export const LoginForm = () => {
                 className="inline-block px-7 py-4 bg-blue-400 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
                 disabled={false}
             >
-                {t('common.auth.sendCode')}
+                发送验证码
             </button>
             <div className="mb-6">
                 <input
@@ -138,7 +138,7 @@ export const LoginForm = () => {
                     name="verifyCode"
                     value={formValues.verifyCode}
                     onChange={handleChange}
-                    placeholder={t('common.auth.verifyCode') as string}
+                    placeholder="请输入验证码"
                     className={`${input_style}`}
                 />
             </div>

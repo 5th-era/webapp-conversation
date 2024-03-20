@@ -20,7 +20,12 @@ export const LogoutButton = () => {
         <div>
             {status == "authenticated" && (
                 <button
-                    onClick={() => { signOut(); }}
+                    onClick={() => {
+                        signOut({
+                            redirect: true,
+                            callbackUrl: "/login"
+                        });
+                    }}
                     style={{ marginLeft: 16 }}
                 >
                     退出登录
