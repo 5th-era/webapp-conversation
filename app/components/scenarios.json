@@ -38,5 +38,29 @@
             "speakingDemo": "/scenes/toast_Demo",
             "reviewExample": "/scenes/toast_Example"
         }
+    },
+    {
+        "name": "魅力故事表达",
+        "info": {
+            "speakingSkills": "/scenes/charmingStory_Skills",
+            "speakingDemo": "/scenes/charmingStory_Demo",
+            "reviewExample": "/scenes/charmingStory_Example"
+        }
+    },
+    {
+        "name": "产品推介",
+        "info": {
+            "speakingSkills": "/scenes/productIntroduction_Skills",
+            "speakingDemo": "/scenes/productIntroduction_Demo",
+            "reviewExample": "/scenes/productIntroduction_Example"
+        }
+    },
+    {
+        "name": "即兴表达",
+        "info": {
+            "speakingSkills": "/scenes/impromptuExpression_Skills",
+            "speakingDemo": "/scenes/impromptuExpression_Demo",
+            "reviewExample": "/scenes/impromptuExpression_Example"
+        }
     }
 ]
