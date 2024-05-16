@@ -25,6 +25,7 @@ import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 
 // 引入JSON数据
 import scenarios from './scenarios.json';
+import { BindButton } from '../bind-sn/form'
 
 // 定义类型
 interface ScenarioInfo {
@@ -83,7 +84,7 @@ const Main: FC = () => {
 
   useEffect(() => {
     if (APP_INFO?.title)
-      document.title = `${APP_INFO.title} - Powered by D5J`
+      document.title = `${APP_INFO.title}`
   }, [APP_INFO?.title])
 
   // onData change thought (the produce obj). https://github.com/immerjs/immer/issues/576
@@ -647,7 +648,9 @@ const Main: FC = () => {
             savedInputs={currInputs as Record<string, any>}
             onInputsChange={setCurrInputs}
           ></ConfigSence>
-
+          {
+            hasSetInputs && <BindButton />
+          }
           {
             hasSetInputs && (
               <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>

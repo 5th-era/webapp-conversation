@@ -9,6 +9,10 @@ import { get_user } from "@/app/api/get-user/get_user"
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
+        maxAge: 180 * 24 * 60 * 60, // 以秒为单位
+    },
+    jwt: {
+        maxAge: 180 * 24 * 60 * 60, // 以秒为单位
     },
     providers: [
         CredentialsProvider({

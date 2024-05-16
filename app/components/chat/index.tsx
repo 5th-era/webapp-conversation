@@ -23,6 +23,7 @@ import VoiceInput from '@/app/components/base/voice-input'
 import { useSession } from "next-auth/react"
 import { LoginForm } from "@/app/login/form"
 import { BindForm, get_user, check_user_valid, check_user_trying, BindButton } from '@/app/bind-sn/form'
+import button from '../base/button'
 
 export type IChatProps = {
   chatList: IChatItem[]
@@ -177,7 +178,7 @@ const Chat: FC<IChatProps> = ({
   return (
     <div className={cn(!feedbackDisabled && 'px-3.5', 'h-full')}>
       {/* Chat List */}
-      {user_trying && <BindButton />}
+      {/* {user_trying && <BindButton />} */}
       <div className="h-full space-y-[30px]">
         {chatList.map((item) => {
           if (item.isAnswer) {
@@ -239,6 +240,7 @@ const Chat: FC<IChatProps> = ({
                 onKeyUp={handleKeyUp}
                 onKeyDown={handleKeyDown}
                 autoSize
+                placeholder="在这里输入你想说的话，点击右边的'发送'按钮开始练习..."
               />
               <div className="absolute bottom-2 right-2 flex items-center h-8">
                 <div className={`${s.count} h-5 leading-5 text-sm bg-gray-50 text-gray-500`}>{query.trim().length}</div>
@@ -268,9 +270,10 @@ const Chat: FC<IChatProps> = ({
                 //     <div>{t('common.operation.send')} Enter</div>
                 //     <div>{t('common.operation.lineBreak')} Shift Enter</div>
                 //   </div>
-                // }
+                // }                  
                 >
-                  <div className={`${s.sendBtn} w-10 h-10 cursor-pointer rounded-md`} onClick={handleSend}></div>
+                  {/* <div className={`${s.sendBtn} w-10 h-10 cursor-pointer rounded-md`} onClick={handleSend}></div> */}
+                  <div className={`${s.flexCenter} w-10 h-10 cursor-pointer rounded-md`} onClick={handleSend}>发送</div>
                 </Tooltip>
               </div>
               {

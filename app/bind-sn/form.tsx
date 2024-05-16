@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from 'react-i18next'
+import { LoginForm } from "../login/form";
 
 async function bind_sn(phoneNumber: string, SN: string, setInfoHandler: any) {
     const response = await fetch('/api/bind-sn', {
@@ -226,16 +227,26 @@ export const BindForm = () => {
 };
 
 export const BindButton = () => {
+    const { data: session, status } = useSession();
+    if (status != "authenticated") {
+        return < div ></div>;
+    }
+    const user_info = session.user?.customData;
+    const user_valid = check_user_valid(user_info);
+    const user_trying = check_user_trying(user_info);
+
     return (
-        <div>
-            <Link
-                href="/bind-sn" // 你的目标路由
-                className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-                style={{ backgroundColor: "#000000" }}
-                role="button"
-            >
-                免费试用一天，点击获取正式版本。
-            </Link>
-        </div>
-    );
+        < div >
+            {user_trying && (
+                <Link
+                    href="/bind-sn" // 你的目标路由
+                    className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
+                    style={{ backgroundColor: "#ff0000" }}
+                    role="button"
+                >
+                    免费试用一天&nbsp;&nbsp;&nbsp;<strong>点击此处</strong>可获得正式版本
+                </Link>
+            )}
+        </div >
+    )
 }

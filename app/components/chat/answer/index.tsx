@@ -24,6 +24,15 @@ const OperationBtn = ({ innerContent, onClick, className }: { innerContent: Reac
   </div>
 )
 
+async function copyToClipboard(content: string) {
+  try {
+    await navigator.clipboard.writeText(content);
+    console.log('Text copied to clipboard');
+  } catch (err) {
+    console.error('Failed to copy text: ', err);
+  }
+}
+
 function containsAllSubstrings(answer: string): boolean {
   const substrings: string[] = [
     "点评",
@@ -225,6 +234,15 @@ const Answer: FC<IAnswerProps> = ({
                     【点击查看更好的演讲稿内容】
                   </div>
                 )}
+              {
+                !item.isOpeningStatement && !isResponsing && (
+                  <div
+                    className='mt-1 mr-1 max-w-full last:mr-0 shrink-0 py-[5px] leading-[18px] items-center px-4 rounded-lg border border-gray-200 shadow-xs bg-white text-base font-medium text-primary-600 cursor-pointer'
+                    onClick={() => copyToClipboard(content)}
+                  >【复制上述内容】
+                  </div>
+                )
+              }
             </div>
             <div className='absolute top-[-14px] right-[-14px] flex flex-row justify-end gap-1'>
               {!feedbackDisabled && !item.feedbackDisabled && renderItemOperation()}
