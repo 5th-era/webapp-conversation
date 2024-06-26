@@ -260,7 +260,7 @@ export const upload = (fetchOptions: any): Promise<any> => {
 
 export const audio2text = (fetchOptions: any): Promise<any> => {
   const urlPrefix = API_PREFIX
-  const urlWithPrefix = `${urlPrefix}/audio-to-text`
+  const urlWithPrefix = `${urlPrefix}/audio-to-text-aliyun`
   const defaultOptions = {
     method: 'POST',
     url: `${urlWithPrefix}`,
